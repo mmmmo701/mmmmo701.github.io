@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Coming Soon — Math Examples</title>
+
+    <!-- site global normalize (repo uses /css/normalize.css) -->
+    <link rel="stylesheet" href="/css/normalize.css">
+
+    <!-- MathJax -->
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js" defer></script>
+
+    <!-- Page-specific styles -->
+    <link rel="stylesheet" href="/css/blog-post.css">
+</head>
+<body>
+    <div class="page">
+        <header class="meta" aria-label="Post header">
+            <div class="brand" aria-hidden="true">B</div>
+            <div>
+                <h1>LaTeX Examples</h1>
+                <p class="subtitle">Small demo of inline and display math (MathJax)</p>
+            </div>
+        </header>
+
+        <main class="card" role="main">
+            <div class="meta-row">
+                <span>Draft - coming soon</span>
+                <a class="back" href="/blog/index.html" title="Back to blog index">← Back to blog</a>
+            </div>
+
+            <article class="content">
+                <h3>Inline Math</h3>
+                <p>
+                    Inline formulas stay inside the text flow. For example, the famous energy–mass relation is
+                    <strong>\(E = mc^2\)</strong>, which renders inline without breaking the paragraph.
+                </p>
+
+                <h3>Display Math</h3>
+                <p>The quadratic formula (centered display):</p>
+
+                <div class="math-display" aria-hidden="false">
+                    $$
+                    x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
+                    $$
+                </div>
+
+                <p class="note" style="color:var(--muted);font-size:0.92rem;">
+                    Math is rendered client-side with MathJax. If formulas don't appear, wait a moment for the library to load
+                    or ensure JavaScript is enabled.
+                </p>
+            </article>
+        </main>
+
+        <footer>
+            <small>© <span id="year"></span> My Blog — Static post</small>
+        </footer>
+    </div>
+
+    <script>
+        // small enhancement: fill the year
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
