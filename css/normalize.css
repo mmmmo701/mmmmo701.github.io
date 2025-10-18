@@ -33,3 +33,18 @@ body {
     justify-content: center;
     padding: 48px 20px;
 }
+
+.section {
+    /* base: subtle dark card + room for themed tint */
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.01), rgba(255, 255, 255, 0.005));
+    border-radius: var(--radius);
+    padding: 18px;
+    display: flex;
+    gap: 18px;
+    align-items: flex-start;
+    margin-bottom: var(--gap);
+    box-shadow: 0 6px 20px rgba(2, 6, 10, 0.6);
+    border-left: 0;
+    /* remove left blob */
+    transition: background .12s ease, transform .12s ease;
+}
