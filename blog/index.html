@@ -1,6 +1,47 @@
 <!doctype html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Projects — Mike Mo</title>
+    <title>Blogs — Mike Mo</title>
+    <link rel="stylesheet" href="../css/normalize.css" />
+    <style>
+        :root {
+            --bg: #200720
+        }
+
+        .blogpost {
+            padding: 18px;
+            border-radius: 10px;
+            border-left: 4px solid transparent;
+            margin-bottom: 36px;
+            background:
+                linear-gradient(180deg, rgba(238, 179, 187, 0.08), rgba(238, 179, 187, 0.04)),
+                linear-gradient(180deg, rgba(255, 255, 255, 0.01), rgba(255, 255, 255, 0.005));
+        }
+
+        .blogpost h2{margin:0 0 6px;font-size:1.05rem} a{color:#eeb3bb;text-decoration:none}
+        .blogpost p{margin:0;color:var(--muted);line-height:1.45}
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <header style="margin-bottom:var(--gap);text-align:left">
+            <div class="site-title">Blogs - Mike Mo</div>
+            <h1 class="name">Mike Mo</h1>
+        </header>
+
+        <div class="blogpost">
+            <h2><a href="posts/coming-soon.md">Coming Soon</a></h2>
+            <p style="margin:0;color:var(--muted);line-height:1.45">Stay tuned for upcoming blog posts!</p>
+        </div>
+
+        <!-- back to home button -->
+        <div class="actions" style="margin-top:14px">
+                    <a class="simple" href="../index.html">Back to home →</a>
+                </div>
+        <footer>Simple — fast — dark</footer>
+    </div>
+</body>

@@ -13,6 +13,23 @@
     color-scheme: dark;
 }
 
+header {
+    margin-bottom: var(--gap);
+    text-align: left
+}
+
+.site-title {
+    font-size: 1.2rem;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    margin: 0 0 8px
+}
+
+.name {
+    font-size: 2rem;
+    margin: 0
+}
+
 * {
     box-sizing: border-box
 }
@@ -48,3 +65,5 @@ body {
     /* remove left blob */
     transition: background .12s ease, transform .12s ease;
 }
+
+footer{color:var(--muted);font-size:0.85rem;text-align:center;margin-top:12px}
