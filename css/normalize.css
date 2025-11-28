@@ -55,9 +55,9 @@ body {
     /* base: subtle dark card + room for themed tint */
     background: linear-gradient(180deg, rgba(255, 255, 255, 0.01), rgba(255, 255, 255, 0.005));
     border-radius: var(--radius);
-    padding: 18px;
+    padding: 50px;
     display: flex;
-    gap: 18px;
+    gap: 20px;
     align-items: flex-start;
     margin-bottom: var(--gap);
     box-shadow: 0 6px 20px rgba(2, 6, 10, 0.6);
