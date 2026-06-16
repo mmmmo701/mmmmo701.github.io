@@ -67,3 +67,58 @@ body {
 }
 
 footer{color:var(--muted);font-size:0.85rem;text-align:center;margin-top:12px}
+
+/* Shared components used across the home, projects, and blog index pages.
+   Page-specific accent colors are set in each page's own <style> block. */
+a.simple {
+    color: inherit;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 6px 10px;
+    border-radius: 8px;
+    display: inline-block;
+    transition: transform .12s ease, opacity .12s ease;
+}
+a.simple:hover {
+    transform: translateY(-3px);
+    opacity: .95;
+}
+
+.section h2 {
+    margin: 0 0 6px;
+    font-size: 1.05rem;
+}
+.section p {
+    margin: 0;
+    color: var(--muted);
+    line-height: 1.45;
+}
+.actions {
+    margin-top: 10px;
+}
+
+.proj-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: 8px;
+}
+.proj {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.proj .meta {
+    color: var(--muted);
+    font-size: 0.95rem;
+}
+.small {
+    font-size: 0.92rem;
+    color: var(--muted);
+}
+
+@media (max-width:520px) {
+    .name {
+        font-size: 1.6rem;
+    }
+}

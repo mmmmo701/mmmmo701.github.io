@@ -1,17 +1,16 @@
 # Copilot quick instructions
 
+- This is a plain static HTML/CSS site served by GitHub Pages from the repo root. There is **no build step** (no Jekyll, no bundler).
 - Repo structure:
-    - Root: static main page `index.html`.
-    - Blog: static site in `blog/index.html` + posts in `blog/_posts/`.
-    - Projects: static index at `projects/index.html` (contains client-side `PROJECTS` array).
+    - Root: main page `index.html`.
+    - Blog: index at `blog/index.html`; each post is a standalone HTML file in `blog/posts/`.
+    - Projects: index at `projects/index.html`.
 - Styling:
-    - Global styles in `css/normalize.css`.
-    - Page-specific styles in `<style>` tags within each HTML file.
+    - `css/base.css` — global dark theme: design tokens (`:root` variables), layout, and shared components (`a.simple`, `.section`, `.proj`, etc.).
+    - `css/post.css` — light theme used only by individual blog posts.
+    - Each page's `<style>` block holds only that page's accent color / `--bg` override. Keep shared rules in `base.css`, not duplicated per page.
+    - All stylesheet hrefs are absolute (`/css/...`) so they resolve at any directory depth on GitHub Pages.
 - Content updates:
-    - Blog posts: add markdown files in `blog/_posts/` with YAML front matter
-    - Projects: update `PROJECTS` array in `projects/index.html`.
-- Commit guidelines:
-    - Use clear commit messages.
-    - Test changes locally before committing.
-
-- If unsure about build tools, theme changes, or new top-level dirs, request review from the repo owner.
+    - New blog post: copy an existing file in `blog/posts/` (links `/css/base.css` + `/css/post.css`, includes the MathJax CDN), then add a `.blogpost` card linking to it in `blog/index.html`.
+    - New project: add a `.proj` card in `projects/index.html`.
+- Test changes locally (serve the repo root, e.g. `python3 -m http.server`) before committing; absolute `/css/...` paths do not resolve from `file://`.

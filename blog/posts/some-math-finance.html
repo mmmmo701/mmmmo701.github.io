@@ -3,16 +3,16 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Coming Soon — Math Examples</title>
+    <title>Some Mathematics of Finance — Mike Mo</title>
 
-    <!-- site global normalize (repo uses /css/normalize.css) -->
-    <link rel="stylesheet" href="/css/normalize.css">
+    <!-- site global base styles -->
+    <link rel="stylesheet" href="/css/base.css">
 
     <!-- MathJax -->
     <script src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js" defer></script>
 
-    <!-- Page-specific styles -->
-    <link rel="stylesheet" href="/css/blog-post.css">
+    <!-- Page-specific (blog post) styles -->
+    <link rel="stylesheet" href="/css/post.css">
 </head>
 <body>
     <div class="page">
@@ -35,14 +35,14 @@
                 </p>
                 <h3>The Story</h3>
                 <p>
-                    The book begins with a story of gambling on football. Vikings and Packers are two football team, and Bob is a Vikings fan, so he offers a 25 to 1 odds on Vikings. This means that for every dollar bet against him, he will have to pay $25 if Vikings lose. Therefore, assume you bet \(x\) dollars against Bob (on Packers), then you will win \(25x\) dollars if Packers win, and you will lose your \(x\) dollars if Packers lose.
+                    The book begins with a story of gambling on football. Vikings and Packers are two football teams, and Bob is a Vikings fan, so he offers a 25 to 1 odds on Vikings. This means that for every dollar bet against him, he will have to pay $25 if Vikings lose. Therefore, assume you bet \(x\) dollars against Bob (on Packers), then you will win \(25x\) dollars if Packers win, and you will lose your \(x\) dollars if Packers lose.
                 </p>
                 <p>
-                    Sue, on the other hand, like Packers, so Sue offers a 6 to 5 odds on Packers. This means that if you bet \(y\) dollars against Sue (on Vikings), then you will win \(\frac{6}{5}y\) dollars if Vikings win, and you will lose your \(y\) dollars if Vikings lose.
+                    Sue, on the other hand, likes Packers, so Sue offers a 6 to 5 odds on Packers. This means that if you bet \(y\) dollars against Sue (on Vikings), then you will win \(\frac{6}{5}y\) dollars if Vikings win, and you will lose your \(y\) dollars if Vikings lose.
                 </p>
                 <h3>The Strategy</h3>
                 <p>
-                    If we only bet on one side, we will lose money if the side lose, so we can bet on both side to alleviate the loss. Surprisingly, there are sometimes ways that we can never lose money.
+                    If we only bet on one side, we will lose money if the side loses, so we can bet on both sides to alleviate the loss. Surprisingly, there are sometimes ways that we can never lose money.
                 </p>
                 <p>
                     Assume I have $100, and I bet \(x\) dollars against Bob, and \(100 - x\) dollars against Sue. In this way, let \(f(x)\) be my net balance if Vikings win, and \(g(x)\) be my net balance if Packers win, then
@@ -55,7 +55,7 @@
                     $$
                 </p>
                 <p>
-                    Here's our central question framed in math: does there exist an \(x\) such that \(f(x) > 0\) and \(g(x) > 0\)? The answer, if you solve the system of inequalities, is yes. When I bet \(\frac{100}{26} < x < \frac{600}{11}\) dollars against Bob, I am guarenteed to win money regardless of which football team wins eventually.
+                    Here's our central question framed in math: does there exist an \(x\) such that \(f(x) > 0\) and \(g(x) > 0\)? The answer, if you solve the system of inequalities, is yes. When I bet \(\frac{100}{26} < x < \frac{600}{11}\) dollars against Bob, I am guaranteed to win money regardless of which football team wins eventually.
                 </p>
                 <h3>Take it Further</h3>
                 <p>
@@ -70,7 +70,7 @@
                     In both cases, I make money.
                 </p>
                 <p>
-                    However, I don't llike when my net balance is not the same in both cases. Is there a way to make my net balance the same regardless of which team wins? Yes. We can set \(f(x) = g(x)\) and solve for \(x\):
+                    However, I don't like when my net balance is not the same in both cases. Is there a way to make my net balance the same regardless of which team wins? Yes. We can set \(f(x) = g(x)\) and solve for \(x\):
                     $$
                     120 - \frac{11}{5}x = 26x - 100,
                     $$
@@ -78,7 +78,7 @@
                 </p>
                 <h3>It Doesn't Work All The Time</h3>
                 <p>
-                    Note that this strategy doesn't always work, because the system of ineqaualities doesn't always has a solution. Generally, some algebra can show that if the product of the two odds is less than 1, then there does not exist a way to bet on both side and never lose money. Otherwise, there exists such a way.
+                    Note that this strategy doesn't always work, because the system of inequalities doesn't always have a solution. Generally, some algebra can show that if the product of the two odds is less than 1, then there does not exist a way to bet on both sides and never lose money. Otherwise, there exists such a way.
                 </p>
             </article>
         </main>

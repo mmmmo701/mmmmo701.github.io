@@ -5,8 +5,9 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Blogs — Mike Mo</title>
-    <link rel="stylesheet" href="/css/normalize.css" />
+    <link rel="stylesheet" href="/css/base.css" />
     <style>
+        /* Blog index accent: pink */
         :root {
             --bg: #200720
         }
@@ -25,6 +26,7 @@
             color:#eeb3bb;
             text-decoration:none;
         }
+        a.simple{color:#eeb3bb}
 
         .blogpost h2{
             margin:0 0 6px;
@@ -37,6 +39,7 @@
             text-decoration:none;
         }
         .blogpost p{
+            margin:0;
             color:var(--muted);
             line-height:1.45;
             padding: 0 15px 15px 15px;
@@ -46,25 +49,21 @@
 
 <body>
     <div class="wrap">
-        <header style="margin-bottom:var(--gap);text-align:left">
+        <header>
             <div class="site-title">Blogs - Mike Mo</div>
             <h1 class="name">Mike Mo</h1>
         </header>
 
         <div class="blogpost">
-            <h2><a href="posts/coming-soon.html">Coming Soon</a></h2>
-            <p style="margin:0;color:var(--muted);line-height:1.45">Stay tuned for upcoming blog posts!</p>
-        </div>
-
-        <div class="blogpost">
             <h2><a href="posts/some-math-finance.html">Some Mathematics of Finance</a></h2>
-            <p style="margin:0;color:var(--muted);line-height:1.45">A study notes of section 1.1 on Mathematics of Finance by Saari</p>
+            <p>A study notes of section 1.1 on Mathematics of Finance by Saari</p>
         </div>
 
         <!-- back to home button -->
         <div class="actions" style="margin-top:14px">
-                    <a class="simple" href="../index.html">Back to home →</a>
-                </div>
+            <a class="simple" href="../index.html">Back to home →</a>
+        </div>
         <footer>Simple — fast — dark</footer>
     </div>
 </body>
+</html>

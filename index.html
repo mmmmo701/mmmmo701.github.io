@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Home — Mike Mo</title>
-    <link rel="stylesheet" href="/css/normalize.css" />
+    <link rel="stylesheet" href="/css/base.css" />
     <style>
         /* Theme tint: a darker (subtle) wash of the accent color across the whole card */
         .section.intro{
@@ -32,21 +32,6 @@
               linear-gradient(180deg, rgba(255,184,107,0.08), rgba(255,184,107,0.04)),
               linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));
         }
-
-        .section h2{margin:0 0 6px;font-size:1.05rem}
-        .section p{margin:0;color:var(--muted);line-height:1.45}
-        .actions{margin-top:10px}
-
-        a.simple{
-            color:inherit;
-            text-decoration:none;
-            font-weight:600;
-            padding:6px 10px;
-            border-radius:8px;
-            display:inline-block;
-            transition:transform .12s ease,opacity .12s ease;
-        }
-        a.simple:hover{transform:translateY(-3px);opacity:.95}
 
         /* Section theme variables */
         .intro{border-left-color: #2dd4bf}       /* teal */
@@ -84,31 +69,14 @@
         }
         .contact a{color:#ffb86b}
 
-        /* Projects list */
-        .proj-list{
-            display:flex;
-            flex-direction:column;
-            gap:6px;
-            margin-top:8px;
-        }
+        /* Projects list (home variant) */
         .proj{
-            display:flex;
-            justify-content:space-between;
-            align-items:center;
             padding:6px 0;
             border-radius:0;
             background:transparent;
+            margin:6px 0;
         }
         .proj:last-child{border-bottom:0}
-        .proj .meta{color:var(--muted);font-size:0.95rem}
-        .small{font-size:0.92rem;color:var(--muted)}
-        .proj {
-            margin: 6px 0;
-        }
-
-        @media (max-width:520px){
-            .name{font-size:1.6rem}
-        }
     </style>
 </head>
 <body>
