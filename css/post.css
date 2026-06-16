@@ -17,12 +17,15 @@
 
 html,
 body {
-    height: 100%;
     background: var(--bg);
     margin: 0;
     padding: 0;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    min-height: 100vh;
 }
 
 .page {

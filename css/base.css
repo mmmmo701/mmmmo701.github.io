@@ -1,8 +1,10 @@
-.wrap {
-    max-width: 880px;
-    width: 100%
-}
+/* ==========================================================================
+   base.css — global dark theme shared by index.html, blog/index.html,
+   projects/index.html, and the blog posts.
+   Each page's own <style> block only adds its accent color / --bg override.
+   ========================================================================== */
 
+/* --- Design tokens ------------------------------------------------------- */
 :root {
     --bg: #0b0f14;
     --card: #0f1419;
@@ -13,44 +15,59 @@
     color-scheme: dark;
 }
 
+/* --- Base elements ------------------------------------------------------- */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: linear-gradient(180deg, #071018 0%, var(--bg) 100%);
+    color: #e6eef6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 48px 20px;
+}
+
+/* --- Layout -------------------------------------------------------------- */
+.wrap {
+    max-width: 880px;
+    width: 100%;
+    /* margin: auto centers the card in the viewport when content is short,
+       but (unlike align-items: center) collapses safely so the top stays
+       reachable when content is taller than the viewport. */
+    margin: auto;
+}
+
 header {
     margin-bottom: var(--gap);
-    text-align: left
+    text-align: left;
 }
 
 .site-title {
     font-size: 1.2rem;
     letter-spacing: 0.08em;
     color: var(--muted);
-    margin: 0 0 8px
+    margin: 0 0 8px;
 }
 
 .name {
     font-size: 2rem;
-    margin: 0
-}
-
-* {
-    box-sizing: border-box
-}
-
-html,
-body {
-    height: 100%
-}
-
-body {
     margin: 0;
-    background: linear-gradient(180deg, #071018 0%, var(--bg) 100%);
-    color: #e6eef6;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 48px 20px;
 }
 
+footer {
+    color: var(--muted);
+    font-size: 0.85rem;
+    text-align: center;
+    margin-top: 12px;
+}
+
+/* --- Components ---------------------------------------------------------- */
 .section {
     /* base: subtle dark card + room for themed tint */
     background: linear-gradient(180deg, rgba(255, 255, 255, 0.01), rgba(255, 255, 255, 0.005));
@@ -61,15 +78,25 @@ body {
     align-items: flex-start;
     margin-bottom: var(--gap);
     box-shadow: 0 6px 20px rgba(2, 6, 10, 0.6);
-    border-left: 0;
-    /* remove left blob */
     transition: background .12s ease, transform .12s ease;
 }
 
-footer{color:var(--muted);font-size:0.85rem;text-align:center;margin-top:12px}
+.section h2 {
+    margin: 0 0 6px;
+    font-size: 1.05rem;
+}
 
-/* Shared components used across the home, projects, and blog index pages.
-   Page-specific accent colors are set in each page's own <style> block. */
+.section p {
+    margin: 0;
+    color: var(--muted);
+    line-height: 1.45;
+}
+
+.actions {
+    margin-top: 10px;
+}
+
+/* Accent-colored link used for calls to action; each page sets its color. */
 a.simple {
     color: inherit;
     text-decoration: none;
@@ -79,22 +106,10 @@ a.simple {
     display: inline-block;
     transition: transform .12s ease, opacity .12s ease;
 }
+
 a.simple:hover {
     transform: translateY(-3px);
     opacity: .95;
-}
-
-.section h2 {
-    margin: 0 0 6px;
-    font-size: 1.05rem;
-}
-.section p {
-    margin: 0;
-    color: var(--muted);
-    line-height: 1.45;
-}
-.actions {
-    margin-top: 10px;
 }
 
 .proj-list {
@@ -103,21 +118,25 @@ a.simple:hover {
     gap: 6px;
     margin-top: 8px;
 }
+
 .proj {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
+
 .proj .meta {
     color: var(--muted);
     font-size: 0.95rem;
 }
+
 .small {
     font-size: 0.92rem;
     color: var(--muted);
 }
 
-@media (max-width:520px) {
+/* --- Responsive ---------------------------------------------------------- */
+@media (max-width: 520px) {
     .name {
         font-size: 1.6rem;
     }
