@@ -19,12 +19,17 @@
         }
         .section.blog{
             background:
-              linear-gradient(180deg, rgba(238,179,187,0.08), rgba(238,179,187,0.04)),
+              linear-gradient(180deg, rgba(255,159,167,0.08), rgba(255,159,167,0.04)),
               linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));
         }
         .section.projects{
             background:
               linear-gradient(180deg, rgba(126,240,74,0.08), rgba(126,240,74,0.04)),
+              linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));
+        }
+        .section.csplus{
+            background:
+              linear-gradient(180deg, rgba(196,133,236,0.08), rgba(196,133,236,0.04)),
               linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));
         }
         .section.contact{
@@ -62,6 +67,13 @@
         }
         .projects a{color:#7ef04a}
 
+        .csplus{border-left-color:#c485ec}     /* blue-ish purple */
+        .csplus h2{
+            color:#c485ec;
+            font-size: 2rem;
+        }
+        .csplus a{color:#c485ec}
+
         .contact{border-left-color:#ffb86b}      /* amber */
         .contact h2{
             color:#ffb86b;
@@ -89,6 +101,8 @@
         <section class="section intro" aria-labelledby="intro-title">
             <div>
                 <h2 id="intro-title">Hi</h2>
+                <p>As of June 2026, I'm a rising sophomore at <a href="https://www.cmu.edu/" target="_blank" rel="noopener noreferrer">Carnegie Mellon University</a> majoring in Computer Science.</p>
+
                 <p>My current interests lies in the intersection between algorithms, complexity theory, computational learning theory and algorithmic game theory.</p>
             </div>
         </section>
@@ -97,7 +111,7 @@
         <section class="section blog" aria-labelledby="blog-title">
             <div>
                 <h2 id="blog-title">Blog</h2>
-                <p class="small">Short essays, notes, and ideas.</p>
+                <p class="small">Ideas, notes and thoughts.</p>
                 <div class="actions">
                     <a class="simple" href="blog/index.html">Read the blog →</a>
                 </div>
@@ -110,10 +124,22 @@
                 <h2 id="research-title">Research</h2>
                 <p>I love digging deep into problems. Here are some of my current and past research projects.</p>
 
-                <div class="proj">
-                    <div>
-                        <div style="font-weight:600">On Measuring the Performance of Locality Sensitive Hashing Algorithms</div>
-                        <div class="meta">Locality Sensitive Hashing (LSH) is a technique of algorithms used to approximate edit distances. This research focuses on constructing a metric to measure the performance of these algorithms.</div>
+                <div class="proj-list">
+                    <div class="proj">
+                        <div>
+                            <div style="font-weight:600">On Measuring the Performance of Locality Sensitive Hashing Algorithms</div>
+                            <div class="meta">Locality Sensitive Hashing (LSH) is a technique of algorithms used to approximate edit distances. This research focuses on constructing a metric to measure the performance of these algorithms.</div>
+                        </div>
+                        <a class="simple" href="https://www.cmu.edu/uro/summer%20research%20fellowships/sura/index.html">Conducted under SURA</a>
+                    </div>
+
+                    <div class="proj">
+                        <div>
+                            <div style="font-weight:600">Theoretical Approach on Assessing the Accuracy of the Shortest Path Non-Optimal Algorithm for 2-Dimensional Grids with Obstacles</div>
+
+                            <div class="meta">Traditional search algorithms on 2D grids guarantee to find the shortest path at the cost of quadratic time complexity. Non-optimal algorithms that trade accuracy for speed have emerged to address the issue. This research evaluates the accuracy of two non-optimal algorithms using experimental data and theoretical analysis.</div>
+                        </div>
+                        <a class="simple" href="https://dl.acm.org/doi/10.1145/3708597.3708620">View paper</a>
                     </div>
                 </div>
             </div>
@@ -135,6 +161,13 @@
                 <div class="actions" style="margin-top:10px">
                     <a class="simple" href="projects/index.html">All projects →</a>
                 </div>
+            </div>
+        </section>
+
+        <section class="section csplus" aria-labelledby="csplus-title">
+            <div style="width:100%">
+                <h2 id="csplus-title">Beyond Computer Science</h2>
+                
             </div>
         </section>
 
