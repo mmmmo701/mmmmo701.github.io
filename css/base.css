@@ -115,19 +115,38 @@ a.simple:hover {
 .proj-list {
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 10px;
     margin-top: 8px;
 }
 
 .proj {
+    /* Stack title, body and link vertically and flush-left so links never
+       float to a squeezed right column or land at uneven heights between
+       cards — one calm reading column, consistent with the rest of the site. */
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    /* Subtle rounded rectangle: visually contains each entry so its own link
+       (e.g. "View on GitHub") reads as belonging to that entry, distinct from
+       the bare section-wide links (e.g. "All projects →") that sit outside any
+       card in .actions. */
+    padding: 14px 16px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .proj .meta {
     color: var(--muted);
     font-size: 0.95rem;
+    line-height: 1.45;
+}
+
+/* Pull the link back by its own inline padding so its text lines up with the
+   title's left edge instead of being indented. */
+.proj > a.simple {
+    margin-left: -10px;
 }
 
 .small {
