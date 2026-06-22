@@ -22,6 +22,11 @@
               linear-gradient(180deg, rgba(255,159,167,0.08), rgba(255,159,167,0.04)),
               linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));
         }
+        .section.useful{
+            background:
+              linear-gradient(180deg, rgba(255,255,120,0.08), rgba(255,255,120,0.04)),
+              linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));
+        }
         .section.projects{
             background:
               linear-gradient(180deg, rgba(126,240,74,0.08), rgba(126,240,74,0.04)),
@@ -60,6 +65,13 @@
         }
         .blog a{color:#eeb3bb}
 
+        .useful{border-left-color:#eeb3bb}         /* yellow */
+        .useful h2{
+            color:#ffff78;
+            font-size: 2rem;
+        }
+        .useful a{color:#ffff78}
+
         .projects{border-left-color:#7ef04a}     /* lime */
         .projects h2{
             color:#7ef04a;
@@ -93,7 +105,7 @@
         <section class="section intro" aria-labelledby="intro-title">
             <div>
                 <h2 id="intro-title">Hi</h2>
-                <p>As of June 2026, I'm a rising sophomore at <a href="https://www.cmu.edu/" target="_blank" rel="noopener noreferrer">Carnegie Mellon University</a> majoring in Computer Science.</p>
+                <p>I'm a rising sophomore at <a href="https://www.cmu.edu/" target="_blank" rel="noopener noreferrer">Carnegie Mellon University</a> majoring in Computer Science.</p>
 
                 <p>My current interests lies in the intersection between algorithms, complexity theory, computational learning theory and algorithmic game theory.</p>
             </div>
@@ -110,7 +122,6 @@
             </div>
         </section>
 
-
         <section class="section research" aria-labelledby="research-title">
             <div>
                 <h2 id="research-title">Research</h2>
@@ -122,7 +133,7 @@
                             <div style="font-weight:600">On Measuring the Performance of Locality Sensitive Hashing Algorithms</div>
                             <div class="meta">Locality Sensitive Hashing (LSH) is a technique of algorithms used to approximate edit distances. This research focuses on constructing a metric to measure the performance of these algorithms.</div>
                         </div>
-                        <a class="simple" href="https://www.cmu.edu/uro/summer%20research%20fellowships/sura/index.html">Conducted under SURA</a>
+                        <a class="simple" href="https://www.cmu.edu/uro/summer%20research%20fellowships/sura/index.html">Conducted under SURA →</a>
                     </div>
 
                     <div class="one-entry">
@@ -131,7 +142,7 @@
 
                             <div class="meta">Traditional search algorithms on 2D grids guarantee to find the shortest path at the cost of quadratic time complexity. Non-optimal algorithms that trade accuracy for speed have emerged to address the issue. This research evaluates the accuracy of two non-optimal algorithms using experimental data and theoretical analysis.</div>
                         </div>
-                        <a class="simple" href="https://dl.acm.org/doi/10.1145/3708597.3708620">View paper</a>
+                        <a class="simple" href="https://dl.acm.org/doi/10.1145/3708597.3708620">View paper →</a>
                     </div>
                 </div>
             </div>
@@ -144,15 +155,38 @@
                 <div class="entry-list">
                     <div class="one-entry">
                         <div>
+                            <div style="font-weight:600">A Map of Computer Science</div>
+                            <div class="meta">When trying to think about the areas of computer science I like, I made the entire field of computer science into a map with the help of LLMs.</div>
+                        </div>
+                        <a class="simple" href="https://mmmmo701.github.io/cs-map">View the Map →</a> 
+                    </div>
+
+                    <div class="one-entry">
+                        <div>
                             <div style="font-weight:600">A Remade Introduction to Rust</div>
                             <div class="meta">After struggling with the official documentation when learning Rust, I decided to create my own (currently incomplete).</div>
                         </div>
-                        <a class="simple" href="https://mmmmo701.github.io/remade-intro-rust">Read the Book</a> 
+                        <a class="simple" href="https://mmmmo701.github.io/remade-intro-rust">Read the Book →</a> 
                     </div>
                 </div>
                 <div class="actions" style="margin-top:10px">
                     <a class="simple" href="projects/index.html">All projects →</a>
                 </div>
+            </div>
+        </section>
+
+        <section class="section useful" aria-labelledby="useful-title">
+            <div>
+                <h2 id="blog-title">Cool Links</h2>
+                <ul>
+                    <li>
+                        <a class="simple" href="https://adam.math.hhu.de/">Lean Games →</a>Learning many math topics in a lean game!
+                    </li>
+                    <li>
+                        <a class="simple" href="https://mmmmo701.github.io/cs-map">Map of Computer Science →</a>The map I made with LLM when trying to figure out what I like.
+                    </li>
+                </ul>
+                
             </div>
         </section>
 
@@ -163,7 +197,7 @@
                     <li>I love playing tennis.</li>
                     <li>I love playing jazz piano and I went to jazz club to jam a lot.</li>
                     <li>I like playing Rogue-like games such as <a href="https://crawl.develz.org/">Dungeon Crawl Stone Soup</a>.</li>
-                    <li>I like playing rhythm games such as Phigros, Arcaea and OSU.</a>.</li>
+                    <li>I like playing rhythm games such as Phigros, Arcaea and OSU</a>.</li>
                 </ul>
             </div>
         </section>
