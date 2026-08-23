@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>An Optimization Problem from Economics — Mike Mo</title>
+
+    <!-- site global base styles -->
+    <link rel="stylesheet" href="/css/base.css">
+
+    <!-- MathJax -->
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js" defer></script>
+
+    <!-- Page-specific (blog post) styles -->
+    <link rel="stylesheet" href="/css/post.css">
+</head>
+<body>
+    <div class="page">
+        <header class="meta" aria-label="Post header">
+            <div class="brand" aria-hidden="true">B</div>
+            <div>
+                <h1>An Optimization Problem from Economics</h1>
+                <p class="subtitle">I was reading about Economics and this optimization problem is so classical and interesting.</p>
+            </div>
+        </header>
+
+        <main class="card" role="main">
+            <div class="meta-row">
+                <a class="back" href="/blog/index.html" title="Back to blog index">← Back to blog</a>
+            </div>
+
+            <article class="content">
+                <p>
+                    I was reading an Economics book today, and I encountered this problem where there is item \(A\) and \(B\) with their own prices for each unit, and each item has a diminishing marginal benefits. Our goal is to maximize the total marginal benefit with a given budget. If you took AP Economics, you might remember that you were taught that the greedy algorithm always works. I am curious about why the greedy algorithm works.
+                </p>
+                <h1>Problem Formulation</h1>
+                <p>
+                    Let \(B\) be your total budget and \(n\) be the maximum amount of one item you can buy. Let \(p_A\) be the price of item \(A\) and \(p_B\) be the price of item \(B\). Let \(a_1,a_2,\cdots,a_n\) be the marginal benefit of each of item \(A\), and \(b_1,b_2,\cdots,b_n\) be the marginal benefit of each of item \(B\). It is guarenteed that
+                    \[
+                    a_1 \geq a_2 \geq \cdots \geq a_n \geq 0,\quad
+                    b_1 \geq b_2 \geq \cdots \geq b_n \geq 0.
+                    \]
+                    Now, the problem is to find \(k\) and \(\ell\) such that \(kp_A + \ell p_B \leq B\) and
+                    \[
+                    \sum_{i=1}^k a_i + \sum_{i=1}^\ell b_i
+                    \]
+                    is maximized.
+                </p>
+                <h1>The Greedy Algorithm</h1>
+                <p>
+                    The greedy algorithm looks like this.
+                </p>
+                <ol>
+                    <li>\((k_0,\ell_0) \gets (0,0)\)</li>
+                    <li><b>for</b> \(i\) in \(1\) to \(2n\):
+                        <ol>
+                            <li><b>if</b> \(\frac{a_{k_i + 1}}{p_A} > \frac{b_{\ell_i + 1}}{p_B}\) and \(k_i + 1 \leq n\)
+                                <ol>
+                                    <li>\((k_i,\ell_i) \gets (k_{i-1}+1, \ell_{i-1})\)</li>
+                                </ol>
+                            </li>
+                            <li><b>else</b>
+                                <ol>
+                                    <li>\((k_i,\ell_i) \gets (k_{i-1}, \ell_{i-1}+1)\)</li>
+                                </ol>
+                            </li>
+                        </ol>
+                    </li>
+                    <li>\(\iota \gets \max \left\{i \in [2n] \mid k_ip_A + \ell_i p_B \leq B \right\} \)</li>
+                    <li><b>return</b> \((k_\iota, \ell_\iota)\)</li>
+                </ol>
+
+                <h1>Why Does it Work</h1>
+                <h2>Assume Unit Price</h2>
+                <p>
+                    We first assume \(p_A = p_B = 1\). Then the problem becomes choosing \(k\) and \(\ell\) such that \(k + \ell = B\) and \(\sum_{i=1}^k a_i + \sum_{i=1}^\ell b_i\) is maximized.
+                </p>
+                <p>
+                    Assume \(k^*,\ell^*\) is the result by running the greedy algorithm, then \(a_{k^* + 1} < a_{\ell^*}\) and \(a_{\ell^* + 1} < a_{k^*}\). AFSOC this is not the most optimal solution, then there exists a better solution \(\tilde{k},\tilde{\ell}\).
+                </p>
+                <p>
+                    <b>Case 1:</b> If \(k^* = \tilde{k}\), then \(\ell^* = \tilde{\ell}\). Then they are the same solution. Contradicts.
+                </p>
+                <p>
+                    <b>Case 2:</b> If \(k^* \neq \tilde{k}\), then let \(\tilde{k},\tilde{\ell}\) be an optimal solution that minimizes \(\left| k^* - \tilde{k}\right|\). WLOG, assume \(k^* < \tilde{k}\). Then \(\ell^* > \tilde{\ell}\), which means that \(\ell^* \geq \tilde{\ell} + 1\). We know that \(b_{\tilde{\ell} + 1}\) was not selected while \(\tilde{k}\) was. By assumptions and the algorithm, we get
+                    \[
+                    b_{\tilde{\ell} + 1} \geq b_{\ell^*} \geq a_{k^* + 1} \geq a_{\tilde{k}}.
+                    \]
+                    Therefore, \(\tilde{k} - 1,\tilde{\ell} + 1\) is a better solution with a smaller \(\left| k^* - \tilde{k}\right|\). Contradicts.
+                </p>
+                <h2>Generalize</h2>
+                TODO
+            </article>
+        </main>
+
+        <footer>
+            <small>© <span id="year"></span> My Blog — Static post</small>
+        </footer>
+    </div>
+
+    <script>
+        // small enhancement: fill the year
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
