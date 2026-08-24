@@ -3,9 +3,7 @@
 :root {
     --bg: #200720;
 
-    /* Glass surface */
     --card: rgba(255, 255, 255, 0.045);
-    --card-strong: rgba(238, 179, 187, 0.055);
     --border: rgba(238, 179, 187, 0.14);
 
     --text: #f5f2f0;
@@ -30,7 +28,10 @@
    Base
    -------------------------------------------------------------------------- */
 
-html,
+html {
+    background: var(--bg);
+}
+
 body {
     background:
         radial-gradient(
@@ -45,9 +46,7 @@ body {
     padding: 0;
 
     font-family: var(--font-stack);
-}
 
-body {
     min-height: 100vh;
 }
 
@@ -57,10 +56,25 @@ body {
    -------------------------------------------------------------------------- */
 
 .page {
-    max-width: var(--maxw);
-    margin: 4rem auto;
-    padding: 1.25rem;
+    /*
+     * Never allow the page to become wider than the viewport.
+     * max-width alone is not enough when padding is included.
+     */
+    width: min(100%, var(--maxw));
+
+    /*
+     * Make padding part of the declared width.
+     * This prevents horizontal overflow on small screens.
+     */
     box-sizing: border-box;
+
+    /*
+     * Large comfortable top/bottom margin on desktop.
+     * Horizontal margin stays auto.
+     */
+    margin: 4rem auto;
+
+    padding: 1.25rem;
 }
 
 
@@ -124,7 +138,7 @@ h1 {
 
 
 /* --------------------------------------------------------------------------
-   Main article -- liquid glass
+   Main article
    -------------------------------------------------------------------------- */
 
 main.card {
@@ -146,7 +160,15 @@ main.card {
     border: 1px solid var(--border);
     border-radius: var(--radius);
 
-    padding: 2.25rem 2.5rem;
+    /*
+     * Responsive padding:
+     * 16px on very narrow screens,
+     * gradually increasing,
+     * up to 40px on desktop.
+     */
+    padding: clamp(1.25rem, 5vw, 2.5rem);
+
+    box-sizing: border-box;
 
     box-shadow:
         0 8px 30px rgba(0, 0, 0, 0.18),
@@ -157,7 +179,8 @@ main.card {
 }
 
 
-/* Subtle glass highlight along the top */
+/* Subtle glass highlight */
+
 main.card::before {
     content: "";
     position: absolute;
@@ -193,10 +216,6 @@ main.card::before {
     font-size: 0.88rem;
 }
 
-.meta-row a {
-    color: var(--accent);
-}
-
 
 /* --------------------------------------------------------------------------
    Article content
@@ -204,6 +223,11 @@ main.card::before {
 
 .content {
     font-size: 1rem;
+
+    /*
+     * Prevent long words / URLs from forcing horizontal overflow.
+     */
+    overflow-wrap: break-word;
 }
 
 .content h2 {
@@ -230,12 +254,6 @@ main.card::before {
 
     font-size: 1rem;
     line-height: 1.72;
-}
-
-
-/* Make consecutive paragraphs breathe naturally */
-.content p + p {
-    margin-top: 0.15rem;
 }
 
 
@@ -295,7 +313,11 @@ a.back:hover {
 
 .math-display {
     margin: 1.4rem 0 1.6rem;
-    padding: 1rem 1.1rem;
+    padding: 1rem;
+
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow-x: auto;
 
     background:
         linear-gradient(
@@ -317,6 +339,7 @@ a.back:hover {
 
 
 /* MathJax / KaTeX */
+
 .math-display *,
 .MathJax,
 .MathJax *,
@@ -349,6 +372,8 @@ a.back:hover {
     margin: 1.4rem 0 1.6rem;
     padding: 1.15rem 1.25rem;
 
+    max-width: 100%;
+    box-sizing: border-box;
     overflow-x: auto;
 
     background: rgba(0, 0, 0, 0.22);
@@ -411,17 +436,22 @@ footer {
 
 
 /* --------------------------------------------------------------------------
-   Mobile
+   Tablet / narrow screens
    -------------------------------------------------------------------------- */
 
 @media (max-width: 700px) {
     .page {
-        padding: 0.75rem;
-        margin: 1.5rem auto;
+        /*
+         * Keep the page close to the screen edges while retaining
+         * a little breathing room.
+         */
+        margin: 2rem auto;
+
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
     }
 
     main.card {
-        padding: 1.5rem 1.25rem;
         border-radius: 12px;
     }
 
@@ -435,10 +465,22 @@ footer {
     }
 }
 
+
+/* --------------------------------------------------------------------------
+   Phones
+   -------------------------------------------------------------------------- */
+
 @media (max-width: 520px) {
     .page {
-        padding: 0.55rem;
+        /*
+         * Very small outer margins on phones.
+         */
+        width: 100%;
+
         margin: 1rem auto;
+
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
     }
 
     header.meta {
@@ -462,13 +504,43 @@ footer {
     }
 
     main.card {
-        padding: 1.25rem 1rem;
+        /*
+         * Smaller glass-card padding on phones.
+         */
+        padding: 1.15rem 1rem;
     }
 
     .meta-row {
         flex-direction: column;
         align-items: flex-start;
+
         gap: 0.35rem;
         margin-bottom: 1.5rem;
+    }
+
+    .content p {
+        font-size: 0.97rem;
+        line-height: 1.65;
+    }
+}
+
+
+/* --------------------------------------------------------------------------
+   Very small phones
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 360px) {
+    .page {
+        padding-left: 0.35rem;
+        padding-right: 0.35rem;
+    }
+
+    main.card {
+        padding-left: 0.85rem;
+        padding-right: 0.85rem;
+    }
+
+    .content p {
+        font-size: 0.95rem;
     }
 }
