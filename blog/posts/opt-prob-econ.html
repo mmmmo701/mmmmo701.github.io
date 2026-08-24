@@ -87,7 +87,7 @@
                     We first assume $p_A = p_B = 1$. Then the problem becomes choosing $k$ and $\ell$ such that $k + \ell = B$ and $\sum_{i=1}^k a_i + \sum_{i=1}^\ell b_i$ is maximized.
                 </p>
                 <p>
-                    Assume $k^*,\ell^*$ is the result by running the greedy algorithm, then $a_{k^* + 1} < a_{\ell^*}$ and $a_{\ell^* + 1} < a_{k^*}$. AFSOC this is not the most optimal solution, then there exists a better solution $\tilde{k},\tilde{\ell}$.
+                    Assume $k^*,\ell^*$ is the result by running the greedy algorithm, then $a_{k^* + 1} < b_{\ell^*}$ and $b_{\ell^* + 1} < a_{k^*}$. AFSOC this is not the most optimal solution, then there exists a better solution $\tilde{k},\tilde{\ell}$.
                 </p>
                 <p>
                     <b>Case 1:</b> If $k^* = \tilde{k}$, then $\ell^* = \tilde{\ell}$. Then they are the same solution. Contradicts.
@@ -128,7 +128,7 @@
                 <p>
                     <i>Proof:</i> AFSOC and WLOG, assume $\frac{f_A(q_A^*)}{p_A} < \frac{f_B(q_B^*)}{p_B}$. Then since $q_A^*,q_B^*$ is an optimal solution, $q_Ap_A + q_Bp_B = B$, or else we can use the remaining budget to purchase more units of items. We will show that there exists $\delta > 0$ such that $q_A^* - \delta,q_B^* + \delta \cdot \frac{p_A}{p_B}$ is a better solution. Let $\delta > 0$. Then the change in total benefit from $q_A^*,q_B^*$ to $q_A^* - \delta,q_B^* + \delta \cdot \frac{p_A}{p_B}$ is
                     \[
-                    \int_{q_A^* - \delta}^{q_A^*} f_A(x) dx + \int_{q_B^*}^{q_B^* + \delta \cdot \frac{p_A}{p_B}} f_B(x) dx.
+                    - \int_{q_A^* - \delta}^{q_A^*} f_A(x) dx + \int_{q_B^*}^{q_B^* + \delta \cdot \frac{p_A}{p_B}} f_B(x) dx.
                     \]
                     We will prove that this quantity is non-negative.
                 </p>
@@ -136,18 +136,34 @@
                     We have
                     \[
                     \begin{align}
-                    & \int_{q_A^* - \delta}^{q_A^*} f_A(x) dx + \int_{q_B^*}^{q_B^* + \delta \cdot \frac{p_A}{p_B}} f_B(x) dx \\
+                    & - \int_{q_A^* - \delta}^{q_A^*} f_A(x) dx + \int_{q_B^*}^{q_B^* + \delta \cdot \frac{p_A}{p_B}} f_B(x) dx \\
                     \geq & \delta f_A(q_A^*) + \delta \cdot \frac{p_A}{p_B} f_B(q_B^* + \delta \cdot \frac{p_A}{p_B}) \\
-                    = & \delta \cdot p_A \left( \frac{f_A(q_A^*)}{p_A} + \frac{f_B(q_B^* + \delta \cdot \frac{p_A}{p_B})}{p_B} \right).
+                    = & \delta \cdot p_A \left( -\frac{f_A(q_A^*)}{p_A} + \frac{f_B(q_B^* + \delta \cdot \frac{p_A}{p_B})}{p_B} \right).
                     \end{align}
                     \]
                     Since $f_B$ is continuous, there exists $\delta > 0$ such that $f_B(q_B^* + \delta \cdot \frac{p_A}{p_B})$ is arbitrarily close to $f_B(q_B^*)$, and thus
                     \[
-                    \frac{f_A(q_A^*)}{p_A} + \frac{f_B(q_B^* + \delta \cdot \frac{p_A}{p_B})}{p_B} \approx \frac{f_A(q_A^*)}{p_A} + \frac{f_B(q_B^*)}{p_B} > 0.
+                    - \frac{f_A(q_A^*)}{p_A} + \frac{f_B(q_B^* + \delta \cdot \frac{p_A}{p_B})}{p_B} \approx -\frac{f_A(q_A^*)}{p_A} + \frac{f_B(q_B^*)}{p_B} > 0.
                     \]
                     Therefore, $q_A^* - \delta,q_B^* + \delta \cdot \frac{p_A}{p_B}$ is a better solution, which contradicts with $q_A^*,q_B^*$ being an optimal solution.
                 </p>
-
+                <p>
+                    With an LLM, I also noticed that the theorem is true even without $f_A$ and $f_B$ being continuous.
+                </p>
+                <p>
+                    <b>Proof without continuity:</b> Let
+                    \[
+                    F(q_A) = \int_0^{q_A} f_A(x) dx + \int_0^{(B-p_Aq_A) / p_B} f_B(x) dx.
+                    \]
+                    Then
+                    \[
+                    F'(q_A) = f_A(q_A) - \frac{p_A}{p_B} f_B \left(\frac{B - p_Aq_A}{p_B}\right).
+                    \]
+                    At optimum, $F'(q_A^*) = 0$, so
+                    \[
+                    f_A(q_A^*) - \frac{p_A}{p_B} f_B \left(\frac{B - p_Aq_A^*}{p_B}\right) = 0 \implies \frac{f_A(q_A^*)}{p_A} = \frac{f_B(q_B^*)}{p_B}.
+                    \]
+                </p>
             </article>
         </main>
 
