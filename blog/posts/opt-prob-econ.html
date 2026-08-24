@@ -13,14 +13,26 @@
 
     <!-- Page-specific (blog post) styles -->
     <link rel="stylesheet" href="/css/post.css">
+
+    <script>
+    window.MathJax = {
+        tex: {
+            inlineMath: [['$', '$'], ['\$', '\$']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']]
+        }
+    };
+    </script>
+    <script async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+    </script>
 </head>
 <body>
     <div class="page">
         <header class="meta" aria-label="Post header">
             <div class="brand" aria-hidden="true">B</div>
             <div>
-                <h1>An Optimization Problem from Economics</h1>
-                <p class="subtitle">I was reading about Economics and this optimization problem is so classical and interesting.</p>
+                <h1>Your AP Economics Class Might be Messing with You</h1>
+                <p class="subtitle">I was reading about Economics and this optimization problem is so classical and interesting. However, the greedy algorithm introduced in most economics books only works in a special case.</p>
             </div>
         </header>
 
@@ -31,16 +43,16 @@
 
             <article class="content">
                 <p>
-                    I was reading an Economics book today, and I encountered this problem where there is item \(A\) and \(B\) with their own prices for each unit, and each item has a diminishing marginal benefits. Our goal is to maximize the total marginal benefit with a given budget. If you took AP Economics, you might remember that you were taught that the greedy algorithm always works. I am curious about why the greedy algorithm works.
+                    Consider two items, $A$ and $B$, each with their own prices and diminishing marginal benefits for each unit. Our goal is to maximize the total marginal benefit with a given budget. If you took AP Economics, you might remember that you were taught that the greedy algorithm always works. However, the truth is this algorithm is only guarenteed to work when the prices are equal.
                 </p>
                 <h1>Problem Formulation</h1>
                 <p>
-                    Let \(B\) be your total budget and \(n\) be the maximum amount of one item you can buy. Let \(p_A\) be the price of item \(A\) and \(p_B\) be the price of item \(B\). Let \(a_1,a_2,\cdots,a_n\) be the marginal benefit of each of item \(A\), and \(b_1,b_2,\cdots,b_n\) be the marginal benefit of each of item \(B\). It is guarenteed that
+                    Let $B$ be your total budget and $n$ be the maximum amount of one item you can buy. Let $p_A$ be the price of item $A$ and $p_B$ be the price of item $B$. Let $a_1,a_2,\cdots,a_n$ be the marginal benefit of each of item $A$, and $b_1,b_2,\cdots,b_n$ be the marginal benefit of each of item $B$. It is guarenteed that
                     \[
                     a_1 \geq a_2 \geq \cdots \geq a_n \geq 0,\quad
                     b_1 \geq b_2 \geq \cdots \geq b_n \geq 0.
                     \]
-                    Now, the problem is to find \(k\) and \(\ell\) such that \(kp_A + \ell p_B \leq B\) and
+                    Now, the problem is to find $k$ and $\ell$ such that $kp_A + \ell p_B \leq B$ and
                     \[
                     \sum_{i=1}^k a_i + \sum_{i=1}^\ell b_i
                     \]
@@ -48,48 +60,94 @@
                 </p>
                 <h1>The Greedy Algorithm</h1>
                 <p>
-                    The greedy algorithm looks like this.
+                    The greedy algorithm looks like this. It works when $p_A = p_B$.
                 </p>
                 <ol>
-                    <li>\((k_0,\ell_0) \gets (0,0)\)</li>
-                    <li><b>for</b> \(i\) in \(1\) to \(2n\):
+                    <li>$(k_0,\ell_0) \gets (0,0)$</li>
+                    <li><b>for</b> $i$ in $1$ to $2n$:
                         <ol>
-                            <li><b>if</b> \(\frac{a_{k_i + 1}}{p_A} > \frac{b_{\ell_i + 1}}{p_B}\) and \(k_i + 1 \leq n\)
+                            <li><b>if</b> $\frac{a_{k_i + 1}}{p_A} > \frac{b_{\ell_i + 1}}{p_B}$ and $k_i + 1 \leq n$
                                 <ol>
-                                    <li>\((k_i,\ell_i) \gets (k_{i-1}+1, \ell_{i-1})\)</li>
+                                    <li>$(k_i,\ell_i) \gets (k_{i-1}+1, \ell_{i-1})$</li>
                                 </ol>
                             </li>
                             <li><b>else</b>
                                 <ol>
-                                    <li>\((k_i,\ell_i) \gets (k_{i-1}, \ell_{i-1}+1)\)</li>
+                                    <li>$(k_i,\ell_i) \gets (k_{i-1}, \ell_{i-1}+1)$</li>
                                 </ol>
                             </li>
                         </ol>
                     </li>
-                    <li>\(\iota \gets \max \left\{i \in [2n] \mid k_ip_A + \ell_i p_B \leq B \right\} \)</li>
-                    <li><b>return</b> \((k_\iota, \ell_\iota)\)</li>
+                    <li>$\iota \gets \max \left\{i \in [2n] \mid k_ip_A + \ell_i p_B \leq B \right\} $</li>
+                    <li><b>return</b> $(k_\iota, \ell_\iota)$</li>
                 </ol>
 
-                <h1>Why Does it Work</h1>
-                <h2>Assume Unit Price</h2>
+                <h1>Why Does it Work When $p_A = p_B$</h1>
                 <p>
-                    We first assume \(p_A = p_B = 1\). Then the problem becomes choosing \(k\) and \(\ell\) such that \(k + \ell = B\) and \(\sum_{i=1}^k a_i + \sum_{i=1}^\ell b_i\) is maximized.
+                    We first assume $p_A = p_B = 1$. Then the problem becomes choosing $k$ and $\ell$ such that $k + \ell = B$ and $\sum_{i=1}^k a_i + \sum_{i=1}^\ell b_i$ is maximized.
                 </p>
                 <p>
-                    Assume \(k^*,\ell^*\) is the result by running the greedy algorithm, then \(a_{k^* + 1} < a_{\ell^*}\) and \(a_{\ell^* + 1} < a_{k^*}\). AFSOC this is not the most optimal solution, then there exists a better solution \(\tilde{k},\tilde{\ell}\).
+                    Assume $k^*,\ell^*$ is the result by running the greedy algorithm, then $a_{k^* + 1} < a_{\ell^*}$ and $a_{\ell^* + 1} < a_{k^*}$. AFSOC this is not the most optimal solution, then there exists a better solution $\tilde{k},\tilde{\ell}$.
                 </p>
                 <p>
-                    <b>Case 1:</b> If \(k^* = \tilde{k}\), then \(\ell^* = \tilde{\ell}\). Then they are the same solution. Contradicts.
+                    <b>Case 1:</b> If $k^* = \tilde{k}$, then $\ell^* = \tilde{\ell}$. Then they are the same solution. Contradicts.
                 </p>
                 <p>
-                    <b>Case 2:</b> If \(k^* \neq \tilde{k}\), then let \(\tilde{k},\tilde{\ell}\) be an optimal solution that minimizes \(\left| k^* - \tilde{k}\right|\). WLOG, assume \(k^* < \tilde{k}\). Then \(\ell^* > \tilde{\ell}\), which means that \(\ell^* \geq \tilde{\ell} + 1\). We know that \(b_{\tilde{\ell} + 1}\) was not selected while \(\tilde{k}\) was. By assumptions and the algorithm, we get
+                    <b>Case 2:</b> If $k^* \neq \tilde{k}$, then let $\tilde{k},\tilde{\ell}$ be an optimal solution that minimizes $\left| k^* - \tilde{k}\right|$. WLOG, assume $k^* < \tilde{k}$. Then $\ell^* > \tilde{\ell}$, which means that $\ell^* \geq \tilde{\ell} + 1$. We know that $b_{\tilde{\ell} + 1}$ was not selected while $\tilde{k}$ was. By assumptions and the algorithm, we get
                     \[
                     b_{\tilde{\ell} + 1} \geq b_{\ell^*} \geq a_{k^* + 1} \geq a_{\tilde{k}}.
                     \]
-                    Therefore, \(\tilde{k} - 1,\tilde{\ell} + 1\) is a better solution with a smaller \(\left| k^* - \tilde{k}\right|\). Contradicts.
+                    Therefore, $\tilde{k} - 1,\tilde{\ell} + 1$ is a better solution with a smaller $\left| k^* - \tilde{k}\right|$. Contradicts.
                 </p>
-                <h2>Generalize</h2>
-                TODO
+                <p>
+                    For $p_A = p_B \neq 1$, divide the budget and prices by $p_A$ or $p_B$ will yield the same problem.
+                </p>
+
+                <h1>Why Does it Not Work Otherwise</h1>
+                <p>
+                    Consider the case when $n = 1, B = 10, p_A = 4, p_B = 7, a_1 = 8, a_2 = 10$. The greedy algorithm will conclude that we should buy one unit of $A$ because $\frac{a_1}{p_A}$ is larger than $\frac{b_1}{p_B}$, resulting in a total benefit of 8. However, if we buy just one unit of $B$ instead, we get a total benefit of 10.
+                </p>
+                <p>
+                    The reason why this specific case fail is because although $A$ is more "bang-for-the-buck", $B$ utilizes the budget better. Specifically, after buying $A$, there are $10 - 4 = 6$ dollars left unused, but the number decreases to $3$ if buying $B$ instead.
+                </p>
+
+                <h1>Towards Continuous Case</h1>
+                <p>
+                    Now we consider the continuous case, where we can buy any real number unit of items. Instead of the sequence $a$ and $b$, let $f_A:\mathbb{R}_{\geq 0} \to \mathbb{R}_{\geq 0}$ and $f_B:\mathbb{R}_{\geq 0} \to \mathbb{R}_{\geq 0}$ be two continuous and monotonically decreasing functions, where $f_A(x)$ and $f_B(x)$ represent the infinitesimal marginal benefit of unit $x$ of item $A$ and $B$, separately. We want to find $q_A,q_B \in \mathbb{R}$ such that $q_Ap_A + q_Bp_B \leq B$ and
+                    \[
+                    \int_0^{q_A} f_A(x) dx + \int_0^{q_B} f_B(x) dx
+                    \]
+                    is maximized. We have the following theorem.
+                </p>
+                <p>
+                    <i>Theorem:</i> If $q_A^*,q_B^*$ is an optimal solution, then
+                    \[
+                    \frac{f_A(q_A^*)}{p_A} = \frac{f_B(q_B^*)}{p_B}.
+                    \]
+                </p>
+                <p>
+                    <i>Proof:</i> AFSOC and WLOG, assume $\frac{f_A(q_A^*)}{p_A} < \frac{f_B(q_B^*)}{p_B}$. Then since $q_A^*,q_B^*$ is an optimal solution, $q_Ap_A + q_Bp_B = B$, or else we can use the remaining budget to purchase more units of items. We will show that there exists $\delta > 0$ such that $q_A^* - \delta,q_B^* + \delta \cdot \frac{p_A}{p_B}$ is a better solution. Let $\delta > 0$. Then the change in total benefit from $q_A^*,q_B^*$ to $q_A^* - \delta,q_B^* + \delta \cdot \frac{p_A}{p_B}$ is
+                    \[
+                    \int_{q_A^* - \delta}^{q_A^*} f_A(x) dx + \int_{q_B^*}^{q_B^* + \delta \cdot \frac{p_A}{p_B}} f_B(x) dx.
+                    \]
+                    We will prove that this quantity is non-negative.
+                </p>
+                <p>
+                    We have
+                    \[
+                    \begin{align}
+                    & \int_{q_A^* - \delta}^{q_A^*} f_A(x) dx + \int_{q_B^*}^{q_B^* + \delta \cdot \frac{p_A}{p_B}} f_B(x) dx \\
+                    \geq & \delta f_A(q_A^*) + \delta \cdot \frac{p_A}{p_B} f_B(q_B^* + \delta \cdot \frac{p_A}{p_B}) \\
+                    = & \delta \cdot p_A \left( \frac{f_A(q_A^*)}{p_A} + \frac{f_B(q_B^* + \delta \cdot \frac{p_A}{p_B})}{p_B} \right).
+                    \end{align}
+                    \]
+                    Since $f_B$ is continuous, there exists $\delta > 0$ such that $f_B(q_B^* + \delta \cdot \frac{p_A}{p_B})$ is arbitrarily close to $f_B(q_B^*)$, and thus
+                    \[
+                    \frac{f_A(q_A^*)}{p_A} + \frac{f_B(q_B^* + \delta \cdot \frac{p_A}{p_B})}{p_B} \approx \frac{f_A(q_A^*)}{p_A} + \frac{f_B(q_B^*)}{p_B} > 0.
+                    \]
+                    Therefore, $q_A^* - \delta,q_B^* + \delta \cdot \frac{p_A}{p_B}$ is a better solution, which contradicts with $q_A^*,q_B^*$ being an optimal solution.
+                </p>
+
             </article>
         </main>
 
