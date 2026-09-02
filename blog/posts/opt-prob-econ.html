@@ -137,21 +137,30 @@
                     \[
                     \begin{align}
                     & - \int_{q_A^* - \delta}^{q_A^*} f_A(x) dx + \int_{q_B^*}^{q_B^* + \delta \cdot \frac{p_A}{p_B}} f_B(x) dx \\
-                    \geq & \delta f_A(q_A^*) + \delta \cdot \frac{p_A}{p_B} f_B(q_B^* + \delta \cdot \frac{p_A}{p_B}) \\
-                    = & \delta \cdot p_A \left( -\frac{f_A(q_A^*)}{p_A} + \frac{f_B(q_B^* + \delta \cdot \frac{p_A}{p_B})}{p_B} \right).
+                    \geq & \delta f_A(q_A^* - \delta) + \delta \cdot \frac{p_A}{p_B} f_B(q_B^* + \delta \cdot \frac{p_A}{p_B}) \\
+                    = & \delta \cdot p_A \left( -\frac{f_A(q_A^* - \delta)}{p_A} + \frac{f_B(q_B^* + \delta \cdot \frac{p_A}{p_B})}{p_B} \right).
                     \end{align}
                     \]
-                    Since $f_B$ is continuous, there exists $\delta > 0$ such that $f_B(q_B^* + \delta \cdot \frac{p_A}{p_B})$ is arbitrarily close to $f_B(q_B^*)$, and thus
+                    Let $D = \frac{f_B(q_B^*)}{p_B} - \frac{f_A(q_A^*)}{p_A}$ be the difference. Then $D > 0$. Choose $\delta_0 > 0$ such that
+                    <ul>
+                        <li>for all $x \in (q_A^* - \delta_0, q_A^* + \delta_0)$, $\lvert f_A(q_A^*) - f_A(x) \rvert < \frac{Dp_A}{4}$, and</li>
+                        <li>for all $x \in (q_B^* - \delta_0 \cdot \frac{p_A}{p_B}, q_B^* + \delta_0 \cdot \frac{p_A}{p_B})$, $\lvert f_B(q_B^*) - f_B(x) \rvert < \frac{Dp_B}{4}.</li>
+                    </ul>
+                    Then, choose any $0 < \delta < \delta_0$. Then,
                     \[
-                    - \frac{f_A(q_A^*)}{p_A} + \frac{f_B(q_B^* + \delta \cdot \frac{p_A}{p_B})}{p_B} \approx -\frac{f_A(q_A^*)}{p_A} + \frac{f_B(q_B^*)}{p_B} > 0.
+                    \begin{align}
+                    & \delta \cdot p_A \left( -\frac{f_A(q_A^* - \delta)}{p_A} + \frac{f_B(q_B^* + \delta \cdot \frac{p_A}{p_B})}{p_B} \right) \\
+                    > & \delta \cdot p_A \left( -\frac{f_A(q_A^*) + \frac{Dp_A}{4}}{p_A} + \frac{f_B(q_B^*) - \frac{Dp_B}{4}}{p_B} \right) \\
+                    = & \delta \cdot p_A \left( -\frac{f_A(q_A^*)}{p_A} + \frac{f_B(q_B^*)}{p_B} - \frac{D}{2} \right) \\
+                    \geq & 0.
+                    \end{align}
                     \]
-                    Therefore, $q_A^* - \delta,q_B^* + \delta \cdot \frac{p_A}{p_B}$ is a better solution, which contradicts with $q_A^*,q_B^*$ being an optimal solution.
                 </p>
                 <p>
-                    With an LLM, I also noticed that the theorem is true even without $f_A$ and $f_B$ being continuous.
+                    With an LLM, I also found a simpler alternate proof.
                 </p>
                 <p>
-                    <b>Proof without continuity:</b> Let
+                    <i>Alternate proof:</i> Let
                     \[
                     F(q_A) = \int_0^{q_A} f_A(x) dx + \int_0^{(B-p_Aq_A) / p_B} f_B(x) dx.
                     \]
