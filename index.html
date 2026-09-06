@@ -12,6 +12,11 @@
               linear-gradient(180deg, rgba(45,212,191,0.08), rgba(45,212,191,0.04)),
               linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));
         }
+        .section.current{
+            background:
+              linear-gradient(180deg, rgba(170,170,255,0.08), rgba(170,170,255,0.04)),
+              linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));
+        }
         .section.research{
             background:
               linear-gradient(180deg, rgba(184,200,190,0.08), rgba(184,200,190,0.04)),
@@ -51,7 +56,14 @@
         }
         .intro a{color:#2dd4bf}
 
-        .research{border-left-color:#b8c8be} /* gray-green */
+        .current{border-left-color:#aaaaff} /* blue */
+        .current h2{
+            color:#aaaaff;
+            font-size: 2rem;
+        }
+        .current a{color:#aaaaff}
+
+        .research{border-left-color:#b8c8be} /* blue */
         .research h2{
             color:#b8c8be;
             font-size: 2rem;
@@ -65,7 +77,7 @@
         }
         .blog a{color:#eeb3bb}
 
-        .useful{border-left-color:#eeb3bb}         /* yellow */
+        .useful{border-left-color:#ffff78}         /* yellow */
         .useful h2{
             color:#ffff78;
             font-size: 2rem;
@@ -94,6 +106,20 @@
         .contact a{color:#ffb86b}
 
     </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js" defer></script>
+
+    <script>
+    window.MathJax = {
+        tex: {
+            inlineMath: [['$', '$'], ['\$', '\$']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']]
+        }
+    };
+    </script>
+    <script async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+    </script>
 </head>
 <body>
     <div class="wrap">
@@ -105,9 +131,26 @@
         <section class="section intro" aria-labelledby="intro-title">
             <div>
                 <h2 id="intro-title">Hi</h2>
-                <p>I'm a rising sophomore at <a href="https://www.cmu.edu/" target="_blank" rel="noopener noreferrer">Carnegie Mellon University</a> majoring in Computer Science.</p>
+                <p>I'm a sophomore at <a href="https://www.cmu.edu/" target="_blank" rel="noopener noreferrer">Carnegie Mellon University</a> majoring in Computer Science.</p>
 
                 <p>My current interests lies in the intersection between algorithms, complexity theory, computational learning theory and algorithmic game theory.</p>
+            </div>
+        </section>
+
+
+        <section class="section current" aria-labelledby="current-title">
+            <div>
+                <h2 id="current-title">Current</h2>
+                <div class="entry-list">
+                    <div class="one-entry">
+                        <div style="font-weight:600">Cutland, <i>Computability, An introduction to recursive function theory</i></div>
+                        <div class="meta">When taking 15-251 (Great Ideas in Theoretical Computer Science), I was fascinated by how there is a complete different world of computability theory besides what's in Sipser. Therefore, I started reading Soare's <i>Turing Computability, Theory and Applications</i>. However, this book is extremely difficult as it is very dense and doesn't use the notations we typically use. For example, it uses $\omega$ instead of $\mathbb{N}$ for natural numbers. Therefore, I decided to switch to Cutland's <i>Computability, An introduction to recursive function theory</i>.</div>
+                    </div>
+                    <div class="one-entry">
+                        <div style="font-weight:600">Decision Making under Imperfect Recall: Algorithms and Benchmarks</div>
+                        <div class="meta">I'm interested in Algorithmic Game Theory, so this is a paper I found that I really like. I've been trying to find time to read it when I don't have a lot of homework. The paper is <a href="https://arxiv.org/abs/2602.15252v1">here</a>. It talks about games with Imperfect Recall: players will sometimes forget things. This model is important as it's hard to store everything you know when playing a game, and the imperfect recall model can also simulate team games with limited communication.</div>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -115,7 +158,7 @@
         <section class="section blog" aria-labelledby="blog-title">
             <div>
                 <h2 id="blog-title">Blog</h2>
-                <p class="small">Ideas, notes and thoughts.</p>
+                <p>Ideas, notes and thoughts.</p>
                 <div class="actions">
                     <a class="simple" href="blog/index.html">Read the blog →</a>
                 </div>
@@ -158,7 +201,7 @@
                             <div style="font-weight:600">A Map of Computer Science</div>
                             <div class="meta">When trying to think about the areas of computer science I like, I made the entire field of computer science into a map with the help of LLMs.</div>
                         </div>
-                        <a class="simple" href="https://mmmmo701.github.io/cs-map">View the Map →</a> 
+                        <a class="simple" href="https://mmmmo701.github.io/cs-map">View the Map →</a>
                     </div>
 
                     <div class="one-entry">
@@ -166,7 +209,7 @@
                             <div style="font-weight:600">A Remade Introduction to Rust</div>
                             <div class="meta">After struggling with the official documentation when learning Rust, I decided to create my own (currently incomplete).</div>
                         </div>
-                        <a class="simple" href="https://mmmmo701.github.io/remade-intro-rust">Read the Book →</a> 
+                        <a class="simple" href="https://mmmmo701.github.io/remade-intro-rust">Read the Book →</a>
                     </div>
                 </div>
                 <div class="actions" style="margin-top:10px">
@@ -178,36 +221,48 @@
         <section class="section useful" aria-labelledby="useful-title">
             <div>
                 <h2 id="blog-title">Cool Links</h2>
-                <ul>
-                    <li>
+                <div class="entry-list">
+                    <div class="one-entry">
                         <a class="simple" href="https://adam.math.hhu.de/">Lean Games →</a>
                         <p>Learning many math topics in a lean game!</p>
-                    </li>
-                    <li>
+                    </div>
+
+                    <div class="one-entry">
                         <a class="simple" href="https://mmmmo701.github.io/cs-map">Map of Computer Science →</a>
                         <p>The map I made with LLM when trying to figure out what I like.</p>
-                    </li>
-                </ul>
-                
+                    </div>
+                </div>
             </div>
         </section>
 
         <section class="section csplus" aria-labelledby="csplus-title">
             <div style="width:100%">
                 <h2 id="csplus-title">Beyond Computer Science</h2>
-                <ul>
-                    <li>I love playing tennis.</li>
-                    <li>I love playing jazz piano and I went to jazz club to jam a lot.</li>
-                    <li>I like playing Rogue-like games such as <a href="https://crawl.develz.org/">Dungeon Crawl Stone Soup</a>.</li>
-                    <li>I like playing rhythm games such as Phigros, Arcaea and OSU</a>.</li>
-                </ul>
+                <div class="entry-list">
+                    <div class="one-entry">
+                        <div style="font-weight:600">Tennis</div>
+                        <div class="meta">I love playing tennis. I try to play at least once a week with my friends. I hope to go somewhere with cool court aesthetics. I'm trying out for the club for the 2026-2027 season.</div>
+                    </div>
+                    <div class="one-entry">
+                        <div style="font-weight:600">Jazz</div>
+                        <div class="meta">I jammed in the jazz club a lot. I play the piano. However, I'm not super good at it as I don't know a lot of the super cool chords and solos. Therefore, I'm following Siskind's <i>Jazz Piano Fundamentals (Book 1)</i>. This is a really good book and I'm currently in Unit 6 and just learned about type A/B voicings.</div>
+                    </div>
+                    <div class="one-entry">
+                        <div style="font-weight:600">Rogue-likes and Tower Defenses</div>
+                        <div class="meta">Two of my favorite game genres are rogue-likes and tower defenses. I heard about rogue-likes when I was searching for some games that I can play with a CLI. I like playing <a href="https://www.nethack.org/">NetHack</a> and <a href="https://crawl.dcss.io/">Dungeon Crawl Stone Soup</a>. I also play <a href="play.pvzge.com">Plants vs Zombies Gardenless</a> and sometimes all the Bloon TD series.</div>
+                    </div>
+                    <div class="one-entry">
+                        <div style="font-weight:600">Rhythm Games</div>
+                        <div class="meta">I like playing rhythm games such as Phigros, Arcaea and OSU and I'm currently taking 98-409 (StuCo: Intro to Rhythm Games).</div>
+                    </div>
+                </div>
             </div>
         </section>
 
         <section class="section contact" aria-labelledby="contact-title">
             <div>
                 <h2 id="contact-title">Contact</h2>
-                <p class="small">Reach out — I'm available for collaborations and small freelance work.</p>
+                <p class="small">Reach out — I'm available for collaborations, research conversations, or just to say hi.</p>
                 <div class="actions" style="display:flex;gap:10px;margin-top:10px">
                     <a class="simple" href="mailto:mikemo@andrew.cmu.edu">Email</a>
                     <a class="simple" href="https://github.com/mmmmo701" target="_blank" rel="noopener">GitHub</a>
