@@ -1,16 +1,18 @@
 # Copilot quick instructions
 
-- This is a plain static HTML/CSS site served by GitHub Pages from the repo root. There is **no build step** (no Jekyll, no bundler).
-- Repo structure:
-    - Root: main page `index.html`.
-    - Blog: index at `blog/index.html`; each post is a standalone HTML file in `blog/posts/`.
-    - Projects: index at `projects/index.html`.
+- Plain static HTML/CSS site served by GitHub Pages from the repo root. **No build step** (no Jekyll, no bundler).
+- Structure:
+    - `index.html` — landing page, one `.section` card per topic.
+    - `blog/index.html` — hand-maintained post list; posts are standalone files in `blog/posts/`.
+    - `projects/index.html` — hand-maintained project list.
+    - `past-current/index.html` — what I'm reading / working through.
 - Styling:
-    - `css/base.css` — global dark theme: design tokens (`:root` variables), layout, and shared components (`a.simple`, `.section`, `.proj`, etc.).
-    - `css/post.css` — light theme used only by individual blog posts.
-    - Each page's `<style>` block holds only that page's accent color / `--bg` override. Keep shared rules in `base.css`, not duplicated per page.
-    - All stylesheet hrefs are absolute (`/css/...`) so they resolve at any directory depth on GitHub Pages.
+    - `css/base.css` — the dark theme for `index.html` and the three index pages: tokens, layout, `.section`, `.entry-list` / `.one-entry` / `.entry-title`, `a.simple`, `.actions`.
+    - `css/post.css` — self-contained dark theme for blog posts. Posts load **only** this file, not `base.css`.
+    - A page's `<style>` block sets **only** `--bg`, `--accent` and `--accent-rgb`. Never copy rules between pages; shared rules go in `base.css`.
+- Math: pages with math load `/js/mathjax.js` (the single MathJax config + loader). Never inline a MathJax config in a page. A literal dollar in prose must be written `\$`.
+- Links: stylesheet, script and in-site page hrefs are absolute (`/css/...`, `/blog/...`). Off-site links get `target="_blank" rel="noopener"`.
 - Content updates:
-    - New blog post: copy an existing file in `blog/posts/` (links `/css/base.css` + `/css/post.css`, includes the MathJax CDN), then add a `.blogpost` card linking to it in `blog/index.html`.
-    - New project: add a `.proj` card in `projects/index.html`.
-- Test changes locally (serve the repo root, e.g. `python3 -m http.server`) before committing; absolute `/css/...` paths do not resolve from `file://`.
+    - New post: copy a file in `blog/posts/` (links `/css/post.css` + `/js/mathjax.js`), then add a `.one-entry` card to `blog/index.html`.
+    - New project: add a `.one-entry` card to `projects/index.html`.
+- Test with a server (`python3 -m http.server`) before committing; absolute `/css/...` paths do not resolve from `file://`.

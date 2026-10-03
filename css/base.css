@@ -1,21 +1,25 @@
 /* ==========================================================================
-   base.css — global dark theme shared by index.html, blog/index.html,
-   projects/index.html, and the blog posts.
-   Each page's own <style> block only adds its accent color / --bg override.
+   base.css — dark theme shared by index.html and the blog / projects /
+   past-current index pages. (Blog posts use post.css instead.)
+
+   A page or a section only ever sets three variables:
+       --bg          page background tint
+       --accent      accent colour (headings and links)
+       --accent-rgb  the same colour as "r, g, b" for the card tint
+   Everything else lives here; don't copy rules into a page's <style>.
    ========================================================================== */
 
-/* --- Design tokens ------------------------------------------------------- */
 :root {
     --bg: #0b0f14;
-    --card: #0f1419;
     --muted: #98a0aa;
+    --accent: #e6eef6;
+    --accent-rgb: 230, 238, 246;
     --radius: 12px;
     --gap: 28px;
     font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
     color-scheme: dark;
 }
 
-/* --- Base elements ------------------------------------------------------- */
 * {
     box-sizing: border-box;
 }
@@ -23,87 +27,88 @@
 body {
     margin: 0;
     min-height: 100vh;
+    padding: 48px 20px;
     background: linear-gradient(180deg, #071018 0%, var(--bg) 100%);
     color: #e6eef6;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     display: flex;
-    align-items: flex-start;
     justify-content: center;
-    padding: 48px 20px;
 }
 
-/* --- Layout -------------------------------------------------------------- */
+ul {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+/* margin: auto centres the column vertically when the content is short, and
+   collapses safely so the top stays reachable when it is taller than the
+   viewport. */
 .wrap {
-    max-width: 880px;
     width: 100%;
-    /* margin: auto centers the card in the viewport when content is short,
-       but (unlike align-items: center) collapses safely so the top stays
-       reachable when content is taller than the viewport. */
+    max-width: 880px;
     margin: auto;
 }
 
+/* --- Page furniture ------------------------------------------------------ */
 header {
     margin-bottom: var(--gap);
-    text-align: left;
 }
 
 .site-title {
+    margin: 0 0 8px;
     font-size: 1.2rem;
     letter-spacing: 0.08em;
     color: var(--muted);
-    margin: 0 0 8px;
 }
 
 .name {
-    font-size: 2rem;
     margin: 0;
+    font-size: 2rem;
 }
 
 footer {
-    color: var(--muted);
+    margin-top: 12px;
     font-size: 0.85rem;
     text-align: center;
-    margin-top: 12px;
+    color: var(--muted);
 }
 
-/* --- Components ---------------------------------------------------------- */
+/* --- Accent-tinted card -------------------------------------------------- */
 .section {
-    /* base: subtle dark card + room for themed tint */
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.01), rgba(255, 255, 255, 0.005));
-    border-radius: var(--radius);
-    padding: 50px;
-    display: flex;
-    gap: 20px;
-    align-items: flex-start;
     margin-bottom: var(--gap);
+    padding: 50px;
+    border-radius: var(--radius);
+    background:
+        linear-gradient(180deg, rgba(var(--accent-rgb), 0.08), rgba(var(--accent-rgb), 0.04)),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.01), rgba(255, 255, 255, 0.005));
     box-shadow: 0 6px 20px rgba(2, 6, 10, 0.6);
-    transition: background .12s ease, transform .12s ease;
 }
 
 .section h2 {
     margin: 0 0 6px;
-    font-size: 1.05rem;
+    font-size: 2rem;
+    color: var(--accent);
 }
 
 .section p {
     margin: 0;
-    color: var(--muted);
     line-height: 1.45;
+    color: var(--muted);
 }
 
-.actions {
-    margin-top: 10px;
-}
-
-/* Accent-colored link used for calls to action; each page sets its color. */
-a.simple {
-    color: inherit;
+/* --- Links --------------------------------------------------------------- */
+a {
+    color: var(--accent);
     text-decoration: none;
-    font-weight: 600;
+}
+
+/* Call-to-action link; it takes its colour from the surrounding accent. */
+a.simple {
+    display: inline-block;
     padding: 6px 10px;
     border-radius: 8px;
-    display: inline-block;
+    font-weight: 600;
     transition: transform .12s ease, opacity .12s ease;
 }
 
@@ -112,6 +117,14 @@ a.simple:hover {
     opacity: .95;
 }
 
+.actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+/* --- Entry cards --------------------------------------------------------- */
 .entry-list {
     display: flex;
     flex-direction: column;
@@ -119,33 +132,31 @@ a.simple:hover {
     margin: 30px 0;
 }
 
+/* One calm reading column: title, body and link stacked flush-left, so links
+   never float into a squeezed right column or land at uneven heights. */
 .one-entry {
-    /* Stack title, body and link vertically and flush-left so links never
-       float to a squeezed right column or land at uneven heights between
-       cards — one calm reading column, consistent with the rest of the site. */
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: 8px;
-    /* Subtle rounded rectangle: visually contains each entry so its own link
-       (e.g. "View on GitHub") reads as belonging to that entry, distinct from
-       the bare section-wide links (e.g. "All projects →") that sit outside any
-       card in .actions. */
+    margin: 5px 0;
     padding: 14px 16px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
     border-radius: 10px;
     background: rgba(255, 255, 255, 0.02);
-    border: 1px solid rgba(255, 255, 255, 0.06);
-    margin: 5px 0;
+}
+
+.entry-title {
+    font-weight: 600;
 }
 
 .one-entry .meta {
-    color: var(--muted);
     font-size: 0.95rem;
     line-height: 1.45;
+    color: var(--muted);
 }
 
-/* Pull the link back by its own inline padding so its text lines up with the
-   title's left edge instead of being indented. */
+/* Pull the link back by its own padding so it lines up with the title. */
 .one-entry > a.simple {
     margin-left: -10px;
 }
@@ -155,9 +166,21 @@ a.simple:hover {
     color: var(--muted);
 }
 
-/* --- Responsive ---------------------------------------------------------- */
+/* --- Narrow screens ------------------------------------------------------ */
 @media (max-width: 520px) {
+    body {
+        padding: 24px 12px;
+    }
+
     .name {
+        font-size: 1.6rem;
+    }
+
+    .section {
+        padding: 24px 20px;
+    }
+
+    .section h2 {
         font-size: 1.6rem;
     }
 }

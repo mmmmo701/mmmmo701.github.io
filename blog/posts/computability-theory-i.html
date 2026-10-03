@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Some Recently Learned Computability Theory — Mike Mo</title>
+    <link rel="stylesheet" href="/css/post.css" />
+    <script src="/js/mathjax.js"></script>
+</head>
+<body>
+    <div class="page">
+        <header class="meta" aria-label="Post header">
+            <div class="brand" aria-hidden="true">B</div>
+            <div>
+                <h1>Some Recently Learned Computability Theory</h1>
+                <p class="subtitle">This semester, I am taking 15-251, our famous TCS course. However, instead of the typical DFA -> NFA -> Turing Machine approach, we started with primitive recursion and added other stuff such as Mealy automata. This made me curious about them and opened Cutland's <i>Computability, An introduction to recursive function theory</i>. This post is part of a record of what I learned.</p>
+            </div>
+        </header>
+
+        <main class="card">
+            <a class="back" href="/blog/index.html" title="Back to blog index">← Back to blog</a>
+
+            <article class="content">
+                <h2>The unlimited register machine (URM)</h2>
+                <p>
+                    Cutland starts with the classic problem of how should we define algorithms. However, instead of starting with any traditional computational model, the book starts with the unlimited register machine (URM).
+                </p>
+                <p>
+                    A URM has infinitely many registers $R_1,R_2,R_3,\cdots$, and each register $R_i$ can store a natural number $r_i$ in it. A URM supports 4 types of instructions.
+                </p>
+                <ul>
+                    <li><b>Zero instruction:</b> $Z(n)$: change the content in $R_n$ to 0.</li>
+                    <li><b>Successor instruction:</b> $S(n)$: change the content in $R_n$ to $r_n + 1$.</li>
+                    <li><b>Transfer instruction:</b> $T(m,n)$: change the content in $R_n$ to $r_m$.</li>
+                    <li><b>Jump instruction:</b> $R(m,n,q)$: if $r_m = r_n$, then jump to the $q$-th instruction. Otherwise, ignore this instruction and proceed to the next one.</li>
+                </ul>
+                <p>
+                    To perform a computation, a program $P$ and an initial configuration $a_1,a_2,a_3,\cdots$ of the numbers in the register must be provided.
+                </p>
+                <p>
+                    Let $f:\mathbb{N}^n \rightharpoonup \mathbb{N}$ be a partial function. We say a program $P$ computes $f$ if for all $v \in \mathbb{N}^n$, if $f(v)$ is defined and $f(v) = w$, then $P$ with initial configuration of $v$ in the first $n$ registers will halt with the content in $R_1$ being $w$; if $f(v)$ is undefined, then $P$ with the same initial configuration will loop forever. We say such $f$ is computable if there exists a program $P$ that computes it.
+                </p>
+                <p>
+                    The URMs follows the Church-Turing thesis. Any functions computable by URMs is also computable by Turing machines. Though "one step" in URM is closer to "one step" in modern programming languages than that in TMs.
+                </p>
+
+                <h2>Relationship to Primitive Recursion</h2>
+                <p>
+                    Primitive Recursion is a new topic being introduced in 15-251. All primitive recursive functions are computable by URMs, as
+                </p>
+                <ul>
+                    <li>The zero function $C_0^{(n)}:\mathbb{N}^n \to \mathbb{N}$ such that $C_0^{(n)}(v) = 0$ for all $v$ is computable by a Zero instruction.</li>
+                    <li>The successor function $S:\mathbb{N} \to \mathbb{N}$ such that $S(x) = x+1$ for all $x$ is computable by a Successor instruction.</li>
+                    <li>The projection function $P_i^{(n)}:\mathbb{N}^n \to \mathbb{N}$ such that $P_i^{(n)}(v) = v_i$ for all $v$ is computable by a Transfer instruction.</li>
+                    <li>The composition $f \circ (g_1,\cdots,g_n)$ is computable by making $n$ copies of the input and "shift" the program of each $g_i$ to the position of their corresponding copies, then organize all $n$ outputs and pass it to the program of $f$.</li>
+                    <li>The primitive recursion is computable by concatening the program for the base case and the inductive case and making appropriate use of the Jump instruction.</li>
+                </ul>
+
+                <h2>$\mu$-Recursion and Partial Recursion</h2>
+                <p>
+                    But, is primitive recursive functions enough? The answer is no. In fact, primitive recursions can't even represent all total functions. For example, the Ackermann function is not primitive recursive. Therefore, more powerful tools are needed.
+                </p>
+                <p>
+                    URMs can also do unbounded search. Specifically, we define an unbounded search
+
+                    $$
+                    \mu y \left(f(\vec{x},y)=0\right)
+                    =
+                    \begin{cases}
+                    \text{the least } y \text{ such that}    \\
+                    \text{(i) } f(\vec{x},z) \text{ is defined for all } z \leq y,  & \text{if such a } y \text{ exists}, \\
+                    \text{(ii) } f(\vec{x},y)=0, &
+                     \\
+                    \text{undefined} & \text{otherwise}.
+                    \end{cases}
+                    $$
+                </p>
+                <p>
+                    Primitive recursive functions with the added power of unbounded search are partial recursive functions. In fact, we only need one unbounded search. This is the same as saying all Turing-recognizable problems are projections of decidable problems.
+                </p>
+            </article>
+        </main>
+
+        <footer>Simple — fast — dark</footer>
+    </div>
+</body>
+</html>
