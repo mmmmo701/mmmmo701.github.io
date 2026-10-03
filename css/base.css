@@ -166,6 +166,168 @@ a.simple:hover {
     color: var(--muted);
 }
 
+/* --- NashHack (the game on the landing page, driven by /js/nashhack.js) -- */
+.nh {
+    margin-top: 24px;
+    padding: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.25);
+    outline: none;
+}
+
+.nh:focus-visible {
+    box-shadow: 0 0 0 2px rgba(var(--accent-rgb), 0.5);
+}
+
+.nh button {
+    padding: 6px 12px;
+    border: 1px solid rgba(var(--accent-rgb), 0.3);
+    border-radius: 8px;
+    background: rgba(var(--accent-rgb), 0.08);
+    color: var(--accent);
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+    touch-action: manipulation;
+}
+
+.nh button:hover {
+    background: rgba(var(--accent-rgb), 0.16);
+}
+
+.nh-status {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 18px;
+    margin-bottom: 12px;
+    font-size: 0.9rem;
+    color: var(--muted);
+}
+
+.nh-status b {
+    color: #e6eef6;
+}
+
+.nh-bar {
+    display: inline-block;
+    width: 80px;
+    height: 6px;
+    margin-left: 8px;
+    vertical-align: middle;
+    border-radius: 3px;
+    background: rgba(255, 255, 255, 0.08);
+    overflow: hidden;
+}
+
+.nh-bar > span {
+    display: block;
+    height: 100%;
+    background: var(--accent);
+}
+
+.nh-map {
+    margin: 0;
+    overflow-x: auto;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: clamp(9px, 2.9vw, 17px);
+    line-height: 1.15;
+}
+
+.nh-w   { color: #6b7480 }
+.nh-f   { color: #3e454e }
+.nh-dim { opacity: 0.45 }
+.nh-p   { color: var(--accent); font-weight: 700 }
+.nh-s   { color: #ffff78; font-weight: 700 }
+.nh-i   { color: #ffb86b; font-weight: 700 }
+.nh-m   { font-weight: 700; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace }
+/* Monster kinds borrow the landing page's section colours. */
+.nh-is-r { color: #b8c8be }
+.nh-is-g { color: #7ef04a }
+.nh-is-m { color: #aaaaff }
+.nh-is-f { color: #2dd4bf }
+.nh-is-k { color: #e6eef6 }
+.nh-is-A { color: var(--accent) }
+
+.nh-help {
+    margin-top: 8px;
+    font-size: 0.85rem;
+    color: var(--muted);
+}
+
+.nh-log {
+    min-height: 1.45em;
+    margin-top: 10px;
+    font-size: 0.9rem;
+    color: #e6eef6;
+}
+
+.nh-pad {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.nh-pad button[data-act="move"] {
+    min-width: 44px;
+}
+
+.nh-foe {
+    font-size: 1.05rem;
+}
+
+.nh-hint {
+    margin: 4px 0 14px;
+    font-size: 0.9rem;
+    font-style: italic;
+    color: var(--muted);
+}
+
+.nh-matrix {
+    border-collapse: separate;
+    border-spacing: 6px;
+    margin-left: -6px;
+}
+
+.nh-matrix th {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--muted);
+    text-align: left;
+}
+
+.nh-matrix td {
+    min-width: 64px;
+    padding: 10px 14px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 1.1rem;
+    text-align: center;
+}
+
+.nh-matrix td.nh-pos  { color: #7ef04a }
+.nh-matrix td.nh-neg  { color: #ff6b6b }
+.nh-matrix td.nh-last { border-color: var(--accent); background: rgba(var(--accent-rgb), 0.1) }
+
+.nh-card {
+    padding: 24px 0;
+    text-align: center;
+}
+
+.nh-card p {
+    margin: 8px 0 16px;
+}
+
+.nh-big {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--accent);
+}
+
 /* --- Narrow screens ------------------------------------------------------ */
 @media (max-width: 520px) {
     body {

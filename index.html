@@ -6,10 +6,12 @@
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Home — Mike Mo</title>
     <link rel="stylesheet" href="/css/base.css" />
+    <script src="/js/nashhack.js" defer></script>
     <style>
         /* One accent per section; base.css builds the tint, heading and link
            colours from these. --accent-rgb must be --accent as "r, g, b". */
         .intro    { --accent: #2dd4bf; --accent-rgb: 45, 212, 191 }
+        .nashhack { --accent: #ff6b6b; --accent-rgb: 255, 107, 107 }
         .current  { --accent: #aaaaff; --accent-rgb: 170, 170, 255 }
         .blog     { --accent: #eeb3bb; --accent-rgb: 238, 179, 187 }
         .research { --accent: #b8c8be; --accent-rgb: 184, 200, 190 }
@@ -36,6 +38,13 @@
             <p>
                 Outside of academics, I love trying random stuff all the time. I usually search on TartanConnect calendar, a calendar that has all events from student organizations and on campus, to join all kinds of random events when I'm tired of doing works. I also love to hang out with my friends to play tennis or try random restaurants or go to random places.
             </p>
+        </section>
+
+        <section class="section nashhack" aria-labelledby="nashhack-title">
+            <h2 id="nashhack-title">NashHack</h2>
+            <p>A game made by Claude based on my personality. This is a tiny roguelike in the spirit of <a href="https://www.nethack.org/" target="_blank" rel="noopener">NetHack</a>, except every fight is a 2×2 zero-sum game: you pick a row, the monster picks a column, and the cell decides who bleeds. Every monster plays a fixed strategy. Most of them can be exploited if you watch what they do, but the Nash Knight can't. Descend five floors and bring the Ackermann down to a base case.</p>
+            <div id="nashhack" class="nh" tabindex="0" aria-label="NashHack game"></div>
+            <noscript><p>NashHack needs JavaScript to run.</p></noscript>
         </section>
 
         <section class="section current" aria-labelledby="current-title">
